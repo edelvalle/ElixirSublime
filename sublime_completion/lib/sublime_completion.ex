@@ -63,10 +63,14 @@ defmodule SublimeCompletion do
   end
 
   defp normalize_expr(expr) do
-    if String.contains?(expr, ".") do
-      expr = expr |> String.split(".") |> Enum.slice(0..-2) |> Enum.join(".")
-      expr = "#{expr}."
-    end
+    expr =
+      if String.contains?(expr, ".") do
+        expr
+        |> String.split(".")
+        |> Enum.slice(0..-2)
+        |> Enum.join(".")
+        |> (fn (expr) -> "#{expr}." end).()
+      end
 
     cond do
       Regex.match?(~r/^[a-z]/, expr) -> "Kernel."
