@@ -6,7 +6,7 @@ defmodule SublimeCompletion.Mixfile do
       app: :sublime_completion,
       version: "0.0.1",
       elixir: "~> 1.0",
-      deps: deps
+      deps: deps()
     ]
   end
 
